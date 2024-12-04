@@ -45,7 +45,7 @@ for source_name in GetSources():
         EnableColoring=1,
         ColorArrayName=[dim, col],
         LookupTable=colLut)
-    meshes.append('{source_name[0]}.ply')
+    meshes.append(f'{source_name[0]}.ply')
 
     Delete(extractSurface)
     del extractSurface
