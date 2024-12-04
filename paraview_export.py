@@ -1,6 +1,7 @@
 import paraview
 #paraview.compatibility.major = 5
 #paraview.compatibility.minor = 12
+import os
 
 from paraview.simple import *
 #### disable automatic camera reset on 'Show'
@@ -39,7 +40,7 @@ for source_name in GetSources():
     colLut = GetColorTransferFunction(col)
 
     # save data
-    mesh = f'{output_path}{source_name[0]}.ply'
+    mesh = os.path.join(output_path,source_name[0]+ '.ply')
     SaveData(mesh, proxy=extractSurface,
         EnableColoring=1,
         ColorArrayName=[dim, col],
@@ -52,5 +53,5 @@ for source_name in GetSources():
 
 out['Meshes'] = meshes
 
-with open(f'{output_path}{filename}', 'w') as f:
+with open(os.path.join(output_path, filename), 'w') as f:
     json.dump(out, f)
